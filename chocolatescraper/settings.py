@@ -39,11 +39,15 @@ ITEM_PIPELINES = {
 SCRAPEOPS_API_KEY = 'YOUR-API-KEY-HERE'
 
 
-
-
+EXTENSIONS = {
+'scrapeops_scrapy.extension.ScrapeOpsMonitor': 500, 
+}
 
 
 DOWNLOADER_MIDDLEWARES = {
+    
+    'scrapeops_scrapy.middleware.retry.RetryMiddleware': 550,
+    'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
 
     ## Rotating User Agents
     # 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
